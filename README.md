@@ -2,6 +2,10 @@
 
 Plugin WordPress para integração com o CrawlerX, permitindo postagem automática de conteúdo via API REST.
 
+<div align="center">
+  <img src="assets/Captura de tela.jpg" alt="CrawlerX Screenshot" width="800">
+</div>
+
 ## 🚀 Funcionalidades
 
 - API REST segura com autenticação via API Key
