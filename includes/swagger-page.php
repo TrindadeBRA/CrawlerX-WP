@@ -3,10 +3,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-function crawlerx_render_swagger_page() {
-    ?>
+function crawlerx_render_swagger_page()
+{
+?>
     <!DOCTYPE html>
     <html lang="pt-BR">
+
     <head>
         <meta charset="UTF-8">
         <title>CrawlerX API - Documentação</title>
@@ -16,6 +18,7 @@ function crawlerx_render_swagger_page() {
                 margin: 0;
                 padding: 0;
             }
+
             #swagger-ui {
                 max-width: 1460px;
                 margin: 0 auto;
@@ -23,6 +26,7 @@ function crawlerx_render_swagger_page() {
             }
         </style>
     </head>
+
     <body>
         <div id="swagger-ui"></div>
         <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
@@ -44,7 +48,8 @@ function crawlerx_render_swagger_page() {
             };
         </script>
     </body>
+
     </html>
-    <?php
+<?php
     exit;
-} 
+}

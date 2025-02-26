@@ -5,7 +5,8 @@ if (!defined('ABSPATH')) {
 }
 
 // Criar um post via API
-function crawlerx_create_post($request) {
+function crawlerx_create_post($request)
+{
     $validation = crawlerx_validate_api_key($request);
     if (is_wp_error($validation)) return $validation;
 
@@ -37,7 +38,7 @@ function crawlerx_create_post($request) {
     wp_set_post_categories($post_id, [102]);
 
     $post = get_post($post_id);
-    
+
     return rest_ensure_response([
         'wp_post_id' => $post_id,
         'wp_slug' => $post->post_name,
@@ -45,7 +46,8 @@ function crawlerx_create_post($request) {
 }
 
 // Upload de imagem via URL e definir como imagem destacada
-function crawlerx_upload_image($request) {
+function crawlerx_upload_image($request)
+{
     $validation = crawlerx_validate_api_key($request);
     if (is_wp_error($validation)) return $validation;
 
@@ -63,7 +65,7 @@ function crawlerx_upload_image($request) {
 
     // Decodifica a imagem base64
     $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image_base64));
-    
+
     if (!$image_data) {
         return new WP_Error('invalid_base64', 'Dados base64 inválidos.', ['status' => 400]);
     }
@@ -107,7 +109,8 @@ function crawlerx_upload_image($request) {
 }
 
 // Registrar rotas
-function crawlerx_register_api_routes() {
+function crawlerx_register_api_routes()
+{
     register_rest_route('crawlerx-api/v1', '/create-post', [
         'methods'  => 'POST',
         'callback' => 'crawlerx_create_post',
@@ -123,7 +126,8 @@ function crawlerx_register_api_routes() {
 add_action('rest_api_init', 'crawlerx_register_api_routes');
 
 // Adicionar rota para servir o arquivo swagger.json
-function crawlerx_serve_swagger_json() {
+function crawlerx_serve_swagger_json()
+{
     if (isset($_GET['crawlerx_swagger'])) {
         header('Content-Type: application/json');
         echo file_get_contents(CRAWLERX_PLUGIN_DIR . 'includes/swagger.json');
