@@ -100,14 +100,18 @@ function crawlerx_upload_image($request)
         'post_excerpt' => $title
     ]);
 
-    set_post_thumbnail($post_id, $attachment_id);
-
     // Se a URL da imagem de capa for fornecida, processe a marca d'água
     if (!empty($cover_image_url)) {
-        $new_attachment_id = process_image_watermark($attachment_id, $cover_image_url);
+        $new_attachment_id = process_image_watermark($attachment_id, $cover_image_url, $post_id);
         
         // Obtenha a URL da nova imagem com a máscara
         $image_url = wp_get_attachment_url($new_attachment_id);
+        
+        // Definir a nova imagem como destacada
+        set_post_thumbnail($post_id, $new_attachment_id);
+        
+        // Remover a imagem original
+        wp_delete_attachment($attachment_id, true);
     } else {
         // Caso contrário, obtenha a URL normal
         $image_url = wp_get_attachment_url($attachment_id);
