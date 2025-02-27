@@ -101,8 +101,8 @@
     },
     "/upload-image": {
       "post": {
-        "summary": "Upload de imagem",
-        "description": "Faz upload de uma imagem e define como imagem destacada do post",
+        "summary": "Upload Image",
+        "description": "Upload an image and set it as featured image for a post",
         "security": [
           {
             "ApiKeyAuth": []
@@ -117,15 +117,20 @@
                 "properties": {
                   "post_id": {
                     "type": "integer",
-                    "description": "ID do post"
+                    "description": "Post ID"
                   },
                   "image_base64": {
                     "type": "string",
-                    "description": "Imagem em formato base64"
+                    "description": "Base64 encoded image"
                   },
                   "title": {
                     "type": "string",
-                    "description": "Título da imagem"
+                    "description": "Image title"
+                  },
+                  "cover_image_url": {
+                    "type": "string",
+                    "description": "URL of the image to be used as watermark (optional)",
+                    "required": false
                   }
                 },
                 "required": ["post_id", "image_base64", "title"]
